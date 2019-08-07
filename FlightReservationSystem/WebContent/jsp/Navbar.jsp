@@ -3,8 +3,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Book Ticket</title>
 <meta charset="ISO-8859-1">
+<title>Airlines</title>
 <link rel="stylesheet" href="../css/dashstylesheet.css">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -13,6 +13,9 @@
 <script src="../js/script.js"></script>
 </head>
 <body>
+	<%
+		String name = (String)session.getAttribute("Name");
+	%>
 	<nav class="navbar navbar-dark bg-primary navbar-expand-lg ">
 		<a class="navbar-brand" href="#">Welcome</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
@@ -32,17 +35,6 @@
 			</ul>
 			<span class="navbar-text">Welcome to Indigo Airways</span>
 		</div>
-	</nav>
-	
-	<div>
-		<div class="card-box child_div" style="width: 18rem;">
-			<img src="../img/img_avatar.PNG" class="card-img-top" alt="...">
-			<div class="card-body">
-				<h5 class="card-title">Card title</h5>
-				<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-				<a href="#" class="btn btn-primary">View Details</a>
-			</div>
-		</div>
-	<div>
+	</nav>	
 </body>
 </html>

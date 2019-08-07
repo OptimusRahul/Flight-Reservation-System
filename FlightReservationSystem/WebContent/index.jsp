@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,7 +21,6 @@
 	  <p>Click Below to explore more.</p>
 	  <a class="btn btn-primary btn-lg" onclick="myFunction()">Click here</a>
 	</div>
-	<div>
 	<div class="card card-box" id="toggleLogin" style="display:none;">
 		<div class="tab">
 			<button class="tablinks" onclick="openCity(event, 'login')">Login</button>
@@ -30,18 +31,17 @@
 				Login
 			</div>
 			<div class="card-body">
-				<form>
+				<form action="./LoginAction" method="post">
 					<div class="form-group">
-						<label for="exampleInputEmail1">Username</label>
-						<input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Username">
+						<label>Username</label>
+						<input type="text" class="form-control" id="username" name="username" placeholder="Enter Username">
 					</div>
 					<div class="form-group">
 						<label for="exampleInputPassword1">Password</label>
-						<input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+						<input type="password" class="form-control" id="password" name="password" placeholder="Password">
 					</div>
 					<button type="submit" class="btn btn-primary">Submit</button>
-				</form>
-			
+				</form>			
 			</div>
 		</div>
 		<div id="signup" class="tabcontent">
@@ -113,7 +113,7 @@
 				    </div>
 				  </div>
 				  <button class="btn btn-primary" type="submit">Submit form</button>
-</form>
+				</form>
 			</div>			
 		</div>
 	</div>
