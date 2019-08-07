@@ -33,7 +33,14 @@
 					<a class="nav-link" href="#">Pricing</a>
 				</li>
 			</ul>
-			<span class="navbar-text">Welcome to Indigo Airways</span>
+			<form action=".././LogoutAction" method="post">	
+				<% if(name!=null){ %>
+					<span class="navbar-text">Welcome to Indigo Airways</span>
+					<input type="submit" class="btn btn-danger" value="Logout">
+				<%} else { %>
+					<span class="navbar-text">Welcome to Indigo Airways</span>
+				<%} %>
+			</form> 
 		</div>
 	</nav>	
 </body>

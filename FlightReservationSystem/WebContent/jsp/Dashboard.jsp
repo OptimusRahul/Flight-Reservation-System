@@ -16,28 +16,7 @@
 	<%
 		String name = (String)session.getAttribute("Name");
 	%>
-	<%@ include file="Navbar.jsp" %>
-	<nav class="navbar navbar-dark bg-primary navbar-expand-lg ">
-		<a class="navbar-brand" href="#">Welcome</a>
-		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-			<span class="navbar-toggler-icon"></span>
-		</button>
-		<div class="collapse navbar-collapse" id="navbarText">
-			<ul class="navbar-nav mr-auto">
-				<li class="nav-item active">
-					<a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="#">Features</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="#">Pricing</a>
-				</li>
-			</ul>
-			<span class="navbar-text">Welcome to Indigo Airways</span>
-		</div>
-	</nav>	
-	
+	<jsp:include page="../jsp/Navbar.jsp"/>		
 	<div class="card card-pos child_div" style="width: 18rem;">
 		<img src="../img/img_avatar.PNG" class="card-img-top" alt="...">
 		<div class="card-body">
@@ -56,39 +35,6 @@
 			<li class="list-group-item">Cancel Ticket</li>
 		</ul>
 	</div>
-
-	<div class="card card-pos child_div" style="width: 18rem;">
-		<div id="login" class="tabcontent">
-			<div class="card-header card text-center display-10" style="margin-left:auto; margin-right:auto;" id="login">
-				Search
-			</div>
-			<div class="card-body">
-				<form>
-					<div class="form-group">
-						<label for="exampleInputEmail1">Source</label>
-						<input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Source">
-					</div>
-					<div class="form-group">
-						<label for="exampleInputPassword1">Destination</label>
-						<input type="text" class="form-control" id="exampleInputPassword1" placeholder="Destination">
-					</div>
-					<div class="form-group">
-						<label for="exampleInputPassword1">Date Of Journey</label>
-						<input type="date" class="form-control" id="exampleInputPassword1" placeholder="date">
-					</div>					
-					<button type="button" class="btn btn-primary" onclick="myFunction()">Submit</button>
-				</form>		
-			</div>
-		</div>
-	</div>
-
-	<div class="card card-pos child_div" id="toggleLogin" style="width: 18rem; display:none;">
-		<img src="../img/img_avatar.PNG" class="card-img-top" alt="...">
-		<div class="card-body">
-			<h5 class="card-title">Card title</h5>
-			<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-			<a href="#" class="btn btn-primary">View Details</a>
-		</div>
-	</div>
+	<jsp:include page="../jsp/Search.jsp"/>
 </body>
 </html>
