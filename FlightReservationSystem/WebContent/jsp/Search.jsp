@@ -13,13 +13,16 @@
 <script src="../js/script.js"></script>
 </head>
 <body>
+	<%
+		String flightSearch = (String)session.getAttribute("data");
+	%>
 	<div class="card card-pos child_div" style="width: 18rem;">
 		<div id="login" class="tabcontent">
-			<div class="card-header card text-center display-10" style="margin-left:auto; margin-right:auto;" id="login">
+			<div class="card-header text-center display-10" style="margin-left:auto; margin-right:auto;" id="login">
 				Search
 			</div>
 			<div class="card-body">
-				<form>
+				<form action="../FlightSearch" method="post">
 					<div class="form-group">
 						<label for="exampleInputEmail1">Source</label>
 						<input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Source">
@@ -37,13 +40,17 @@
 			</div>
 		</div>
 	</div>
-
+	
 	<div class="card card-pos child_div" id="toggleLogin" style="width: 18rem; display:none;">
-		<img src="../img/img_avatar.PNG" class="card-img-top" alt="...">
+		<div class="card-header text-center display-10" style="margin-left:auto; margin-right:auto;" id="login">
+			Flight Between Source and Destination
+		</div>
 		<div class="card-body">
-			<h5 class="card-title">Card title</h5>
+		<% if(flightSearch != null){%>
 			<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-			<a href="#" class="btn btn-primary">View Details</a>
+		<%}else{ %>
+			<p class="card-text">No Direct Flight Not Found</p>
+		<%} %>
 		</div>
 	</div>
 </body>

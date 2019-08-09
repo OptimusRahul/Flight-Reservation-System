@@ -1,12 +1,11 @@
 package com.Servlets;
-import java.io.IOException; 
+import java.io.IOException;  
   
 import java.io.PrintWriter;
 
 import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -32,11 +31,10 @@ public class LoginAction extends HttpServlet {
 		String pwd = request.getParameter("password");
 		System.out.println(usr+" "+pwd);
 		try {
-			PreparedStatement pst = con.prepareStatement("select * from login where usr=? and pwd=?");
-			pst.setString(1, usr);
-			pst.setString(2, pwd);
-			ResultSet rs = pst.executeQuery();
-			if(rs.next()) {
+			
+			Statement st = con.createStatement();
+			boolean result = st.execute("select * from login where usr='"+usr+"' and pwd='"+pwd+"'");
+			if(result) {
 				HttpSession session = request.getSession();
 				session.setAttribute("Name", usr);
 				response.sendRedirect("./jsp/Dashboard.jsp");
