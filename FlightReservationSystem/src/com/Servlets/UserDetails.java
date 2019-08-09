@@ -3,6 +3,8 @@ package com.Servlets;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -13,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.Connection.DbConnection;
+import com.PassengerDetails.PassengerDetails;
 
 public class UserDetails extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -24,19 +27,24 @@ public class UserDetails extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	response.sendRedirect("./jsp/UserDetails.jsp");
-    	/*response.setContentType("text/html");
+    	response.setContentType("text/html");
 		PrintWriter pw = response.getWriter();
 		con = DbConnection.getConnection();
-		String usr = request.getParameter("username");
-		String pwd = request.getParameter("password");
-		System.out.println(usr+" "+pwd);
 		try {
-			
-			Statement st = con.createStatement();
-			boolean result = st.execute("select * from login where usr='"+usr+"' and pwd='"+pwd+"'");
-			if(result) {
+			PreparedStatement pst = con.prepareStatement("select * from user_details where id=?");
+			pst.setInt(1,LoginAction.id);
+			ResultSet rs = pst.executeQuery();
+			if(rs.next()) {
+				String name = rs.getString(1);
+				String address = rs.getString(2);
+				System.out.println(name+address);
+				String phoneNo = String.valueOf(rs.getInt(3));
+				String email = rs.getString(4);
+				System.out.println(name+address+phoneNo+email);
+				PassengerDetails obj = new PassengerDetails(name, address, phoneNo, email);
+				System.out.println(obj);
 				HttpSession session = request.getSession();
-				session.setAttribute("Name", usr);
+				session.setAttribute("Name", rs);
 				response.sendRedirect("./jsp/Dashboard.jsp");
 			}else {
 				pw.println("Wrong Credentials");
@@ -45,7 +53,7 @@ public class UserDetails extends HttpServlet {
 		catch (SQLException e) {
 			e.printStackTrace();
 		}	
-		response.getWriter().append("Served at: ").append(request.getContextPath());*/
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 }

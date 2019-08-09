@@ -1,37 +1,19 @@
 package com.PassengerDetails;
 
 public class PassengerDetails {
+	
 	String Name, Address, PhNo, EmailID;
-
-	public String getName() {
-		return Name;
+	
+	public PassengerDetails(String name, String address, String phNo, String emailID) {
+		this.Name = name;
+		this.Address = address;
+		this.PhNo = phNo;
+		this.EmailID = emailID;
 	}
-
-	public void setName(String name) {
-		Name = name;
-	}
-
-	public String getAddress() {
-		return Address;
-	}
-
-	public void setAddress(String address) {
-		Address = address;
-	}
-
-	public String getPhNo() {
-		return PhNo;
-	}
-
-	public void setPhNo(String phNo) {
-		PhNo = phNo;
-	}
-
-	public String getEmailID() {
-		return EmailID;
-	}
-
-	public void setEmailID(String emailID) {
-		EmailID = emailID;
+	
+	@Override
+	public String toString() {
+		return "PassengerDetails [Name=" + Name + ", Address=" + Address + ", PhNo=" + PhNo + ", EmailID=" + EmailID
+				+ "]";
 	}
 }

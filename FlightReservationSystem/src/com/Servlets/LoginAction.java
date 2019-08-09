@@ -1,11 +1,12 @@
 package com.Servlets;
-import java.io.IOException;  
+import java.io.IOException;   
   
 import java.io.PrintWriter;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -17,7 +18,8 @@ import com.Connection.DbConnection;
 
 public class LoginAction extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	public static Connection con; 
+	public static Connection con;
+	public static int id;
     
 	public LoginAction() {
 		con = DbConnection.getConnection();
@@ -29,12 +31,13 @@ public class LoginAction extends HttpServlet {
 		con = DbConnection.getConnection();
 		String usr = request.getParameter("username");
 		String pwd = request.getParameter("password");
-		System.out.println(usr+" "+pwd);
 		try {
-			
-			Statement st = con.createStatement();
-			boolean result = st.execute("select * from login where usr='"+usr+"' and pwd='"+pwd+"'");
-			if(result) {
+			PreparedStatement pst = con.prepareStatement("select * from login where uname=? and upass=?");
+			pst.setString(1, usr);
+			pst.setString(2, pwd);
+			ResultSet rs = pst.executeQuery();
+			if(rs.next()) {
+				id = rs.getInt(1);
 				HttpSession session = request.getSession();
 				session.setAttribute("Name", usr);
 				response.sendRedirect("./jsp/Dashboard.jsp");

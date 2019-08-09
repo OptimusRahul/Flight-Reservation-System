@@ -15,7 +15,7 @@
 </head>
 <body>
 	<jsp:include page="../jsp/Navbar.jsp"/>
-	<div class="card-box child_div" style="width: 18rem;">
+	<div class="card card-box child_div" style="width: 18rem;">
 		<img src="../img/img_avatar.PNG" class="card-img-top" alt="...">
 		<div class="card-body">
 			<h5 class="card-title">Card title</h5>
