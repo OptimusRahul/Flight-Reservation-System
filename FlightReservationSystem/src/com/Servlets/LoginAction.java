@@ -40,6 +40,7 @@ public class LoginAction extends HttpServlet {
 				id = rs.getInt(1);
 				HttpSession session = request.getSession();
 				session.setAttribute("Name", usr);
+				session.setAttribute("id", id);
 				response.sendRedirect("./jsp/Dashboard.jsp");
 			}else {
 				pw.println("Wrong Credentials");
