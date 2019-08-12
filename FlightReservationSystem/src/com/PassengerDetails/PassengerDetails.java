@@ -13,6 +13,6 @@ public class PassengerDetails {
 	
 	@Override
 	public String toString() {
-		return "Name=" + Name + " Address=" + Address + " PhNo=" + PhNo + " EmailID=" + EmailID;
+		return Name + " " + Address +" "+ PhNo+" "+EmailID;
 	}
 }

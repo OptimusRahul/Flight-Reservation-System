@@ -11,6 +11,7 @@
 		String name = (String)session.getAttribute("Name");
 	%>
 	<jsp:include page="../jsp/Navbar.jsp"/>		
+	
 	<div class="card card-pos child_div" style="width: 18rem;">
 		<img src="../img/img_avatar.PNG" class="card-img-top" alt="...">
 		<div class="card-body">
@@ -32,5 +33,6 @@
 		</ul>
 	</div>
 	<jsp:include page="../jsp/Search.jsp"/>
+	
 </body>
 </html>

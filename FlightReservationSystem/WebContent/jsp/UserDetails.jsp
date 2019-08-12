@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,14 +15,16 @@
 <body>
 	<jsp:include page="../jsp/Navbar.jsp"/>
 	<%
-		String arr = (String)session.getAttribute("PassengerDetails");
-		System.out.println(arr);
+		String obj = (String)session.getAttribute("PassengerDetails").toString();
+		String details[] = obj.split(" ");
 	%>
 	<div class="card card-box child_div" style="width: 18rem;">
 		<img src="../img/img_avatar.PNG" class="card-img-top" alt="...">
 		<div class="card-body">
-			<h5 class="card-title">Card title</h5>
-			<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+			<%	for(int i=0; i<details.length; i++){  %>
+			<h5 class="card-title"><%out.print(details[i]);%> </h5>
+			<%} %>
+			<p class="card-text"></p>
 			<a href="#" class="btn btn-primary">View Details</a>
 		</div>
 	</div>

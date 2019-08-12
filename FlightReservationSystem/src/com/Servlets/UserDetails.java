@@ -6,6 +6,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -28,23 +29,24 @@ public class UserDetails extends HttpServlet {
     	response.setContentType("text/html");
     	HttpSession session = request.getSession();
     	int id = (int)session.getAttribute("id");
+    	System.out.println(id);
 		PrintWriter pw = response.getWriter();
 		con = DbConnection.getConnection();
 		try {
 			PreparedStatement pst = con.prepareStatement("select * from user_details where id=?");
+			Statement st = con.createStatement();
+			ResultSet res = st.executeQuery("select * from user_details where id="+id);
 			pst.setInt(1,id);
 			ResultSet rs = pst.executeQuery();
-			if(rs.next()) {
-				String name = rs.getString(1);
-				String address = rs.getString(2);
-				System.out.println(name+address);
-				String phoneNo = String.valueOf(rs.getInt(3));
-				String email = rs.getString(4);
-				System.out.println(name+address+phoneNo+email);
+			System.out.println(rs.next()+" "+res.next());
+			if(!res.next()) {
+				String name = rs.getString("name");
+				String address = rs.getString("address");
+				String phoneNo = rs.getString("phoneno");
+				String email = rs.getString("email");
 				PassengerDetails obj = new PassengerDetails(name, address, phoneNo, email);
-				System.out.println(obj);
 				session.setAttribute("PassengerDetails", obj);
-				response.sendRedirect("./jsp/Dashboard.jsp");
+				response.sendRedirect("./jsp/UserDetails.jsp");
 			}else {
 				pw.println("Wrong Credentials");
 			}

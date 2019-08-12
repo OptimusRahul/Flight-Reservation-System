@@ -2,6 +2,9 @@ package com.Servlets;
 
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -11,20 +14,28 @@ import javax.servlet.http.HttpServletResponse;
 import com.Connection.DbConnection;
 
 /**
- * Servlet implementation class FlightSearch
+ * Servlet implementation class CitySearch
  */
-public class FlightSearch extends HttpServlet {
-
+public class CitySearch extends HttpServlet {
+	/**
+	 * 
+	 */
 	private static final long serialVersionUID = 1L;
 	public static Connection con;
 	public static int id;
     
-	public FlightSearch()  {
+	public CitySearch() {
 		con = DbConnection.getConnection();
 	}
-   	
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		try {
+			PreparedStatement pst = con.prepareStatement("select * from airport");
+			ResultSet rs = pst.executeQuery();
+		}
+		catch(SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 }

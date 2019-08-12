@@ -4,7 +4,7 @@ public class Airplane {
 	
 	String Airplane_Id, Airplane_Type;
 	int Airplane_total_seats;
-	
+		
 	public String getAirplane_Id() {
 		return Airplane_Id;
 	}
