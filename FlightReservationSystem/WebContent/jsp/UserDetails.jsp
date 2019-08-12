@@ -15,6 +15,10 @@
 </head>
 <body>
 	<jsp:include page="../jsp/Navbar.jsp"/>
+	<%
+		String arr = (String)session.getAttribute("PassengerDetails");
+		System.out.println(arr);
+	%>
 	<div class="card card-box child_div" style="width: 18rem;">
 		<img src="../img/img_avatar.PNG" class="card-img-top" alt="...">
 		<div class="card-body">

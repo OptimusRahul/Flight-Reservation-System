@@ -6,7 +6,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -26,13 +25,14 @@ public class UserDetails extends HttpServlet {
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	response.sendRedirect("./jsp/UserDetails.jsp");
     	response.setContentType("text/html");
+    	HttpSession session = request.getSession();
+    	int id = (int)session.getAttribute("id");
 		PrintWriter pw = response.getWriter();
 		con = DbConnection.getConnection();
 		try {
 			PreparedStatement pst = con.prepareStatement("select * from user_details where id=?");
-			pst.setInt(1,LoginAction.id);
+			pst.setInt(1,id);
 			ResultSet rs = pst.executeQuery();
 			if(rs.next()) {
 				String name = rs.getString(1);
@@ -43,8 +43,7 @@ public class UserDetails extends HttpServlet {
 				System.out.println(name+address+phoneNo+email);
 				PassengerDetails obj = new PassengerDetails(name, address, phoneNo, email);
 				System.out.println(obj);
-				HttpSession session = request.getSession();
-				session.setAttribute("Name", rs);
+				session.setAttribute("PassengerDetails", obj);
 				response.sendRedirect("./jsp/Dashboard.jsp");
 			}else {
 				pw.println("Wrong Credentials");
