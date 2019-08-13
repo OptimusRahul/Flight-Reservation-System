@@ -1,5 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@page import="java.util.Iterator"%>
+<%@page import="java.util.ArrayList"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,9 +14,6 @@
 <script src="../js/script.js"></script>
 </head>
 <body>
-	<%
-		String flightSearch = (String)session.getAttribute("data");
-	%>
 	<div class="card card-pos child_div" style="width: 18rem;">
 		<div id="login" class="tabcontent">
 			<div class="card-header text-center display-10" style="margin-left:auto; margin-right:auto;" id="login">
@@ -25,33 +23,44 @@
 				<form action="../FlightSearch" method="post">
 					<div class="form-group">
 						<label for="exampleInputEmail1">Source</label>
-						<input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Source">
+						<input type="text" class="form-control" id="source" name="source" aria-describedby="emailHelp" placeholder="Source">
 					</div>
 					<div class="form-group">
 						<label for="exampleInputPassword1">Destination</label>
-						<input type="text" class="form-control" id="exampleInputPassword1" placeholder="Destination">
+						<input type="text" class="form-control" id="destination" name="destination" placeholder="Destination">
 					</div>
 					<div class="form-group">
 						<label for="exampleInputPassword1">Date Of Journey</label>
-						<input type="date" class="form-control" id="exampleInputPassword1" placeholder="date">
+						<input type="date" class="form-control" id="exampleInputPassword1" placeholder="date" name="date">
 					</div>					
-					<button type="button" class="btn btn-primary" onclick="myFunction()">Submit</button>
+					<button type="submit" class="btn btn-primary"><!--onclick="myFunction()"-->Submit</button>
 				</form>		
 			</div>
 		</div>
 	</div>
-	
-	<div class="card card-pos child_div" id="toggleLogin" style="width: 18rem; display:none;">
-		<div class="card-header text-center display-10" style="margin-left:auto; margin-right:auto;" id="login">
-			Flight Between Source and Destination
+	<%
+		ArrayList<Object> list = new ArrayList<Object>(); 
+		list.add(session.getAttribute("data"));
+		Iterator<Object> it = list.iterator();
+	%>
+	<% if(list!=null){ %>
+		<div class="card card-pos child_div w-50" id="toggleLogin" style="width: 18rem; /*display:none;*/">
+			<div class="card-header text-center display-10" style="margin-left:auto; margin-right:auto;" id="login">
+				Flight Between Source and Destination
+			</div>
+			<% while(it.hasNext()){ %>
+				<div class="card-body">
+					<%String arr[] = it.next().toString().split(" "); %>
+						<h1>Flight No.: <%out.print(arr[0]);%></h1>
+						<h1>Airline: <%out.print(arr[1]);%></h1>
+						<h1>Departure_airport_code: <%out.print(arr[3]);%></h1>
+						<h1>scheduled_departure_time: <%out.print(arr[4]);%></h1>
+						<h1>arrival_airport_code <%out.print(arr[5]);%></h1> 
+						<h1>scheduled_arrival_time  <%out.print(arr[6]);%></h1>
+						<h1>flight_duration  <%out.print(arr[7]);%></h1>
+				</div>
+			<%}%>
 		</div>
-		<div class="card-body">
-		<% if(flightSearch != null){%>
-			<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-		<%}else{ %>
-			<p class="card-text">No Direct Flight Not Found</p>
-		<%} %>
-		</div>
-	</div>
+	<%}%>	
 </body>
 </html>
