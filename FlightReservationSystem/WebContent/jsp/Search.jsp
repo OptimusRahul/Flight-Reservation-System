@@ -12,6 +12,13 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <script src="../js/script.js"></script>
+<style>
+table, th, td {
+  border: 1px solid gray;
+  border-collapse: collapse;
+ 
+}
+</style>
 </head>
 <body>
 	<div class="card card-pos child_div" style="width: 18rem;">
@@ -33,34 +40,66 @@
 						<label for="exampleInputPassword1">Date Of Journey</label>
 						<input type="date" class="form-control" id="exampleInputPassword1" placeholder="date" name="date">
 					</div>					
-					<button type="submit" class="btn btn-primary"><!--onclick="myFunction()"-->Submit</button>
+					<button type="submit" class="btn btn-primary" name="data" value="searchData"><!--onclick="myFunction()"-->Submit</button>
 				</form>		
 			</div>
 		</div>
 	</div>
+	
 	<%
-		ArrayList<Object> list = new ArrayList<Object>(); 
-		list.add(session.getAttribute("data"));
-		Iterator<Object> it = list.iterator();
+		String flag = "false";
+		flag = request.getParameter("flag");
+		if(flag == null){
+			flag = "false";
+		}
+		
+		if(flag.equals("true")){
+			ArrayList<Object> list = new ArrayList<Object>(); 
+			list.add(request.getParameter("source"));
+			Iterator<Object> it = list.iterator();
 	%>
 	<% if(list!=null){ %>
-		<div class="card card-pos child_div w-50" id="toggleLogin" style="width: 18rem; /*display:none;*/">
+		<div class="card card-pos child_div" id="toggleLogin" style="width: 18rem; /*display:none;*/">
 			<div class="card-header text-center display-10" style="margin-left:auto; margin-right:auto;" id="login">
 				Flight Between Source and Destination
 			</div>
-			<% while(it.hasNext()){ %>
-				<div class="card-body">
-					<%String arr[] = it.next().toString().split(" "); %>
-						<h1>Flight No.: <%out.print(arr[0]);%></h1>
-						<h1>Airline: <%out.print(arr[1]);%></h1>
-						<h1>Departure_airport_code: <%out.print(arr[3]);%></h1>
-						<h1>scheduled_departure_time: <%out.print(arr[4]);%></h1>
-						<h1>arrival_airport_code <%out.print(arr[5]);%></h1> 
-						<h1>scheduled_arrival_time  <%out.print(arr[6]);%></h1>
-						<h1>flight_duration  <%out.print(arr[7]);%></h1>
-				</div>
-			<%}%>
 		</div>
-	<%}%>	
+			<%String data[] = it.next().toString().trim().split(","); %>
+			<%for(int i=0; i<data.length; i++){%>
+				<div class="card w-75">
+					<table>
+						<tr>
+							<th>Flight No.</th>
+							<th>Airline</th>
+							<th>Departure Airport</th>
+							<th>Departure Time</th>
+							<th>Arrival Airport</th>
+							<th>Arrival Time</th>
+							<th>Flight Duration</th>
+							<th>Seat Availability</th>
+							<th>Book</th>
+						</tr>
+						<%String arr[] = data[i].replace("["," ").replace("]"," ").trim().split(" ");%>
+						<tr>
+							<td><%out.print(arr[0]);%></td>
+							<td><%out.print(arr[1]);%></td>
+							<td><%out.print(arr[3]);%></td>
+							<td><%out.print(arr[4]);%></td>
+							<td><%out.print(arr[5]);%></td> 
+							<td><%out.print(arr[6]);%></td>
+							<td><%out.print(arr[7]);%></td>
+							<td></td>
+							<td><button type="submit" class="btn btn-primary" name="data" value="searchData">Book Now</button></td>
+						</tr>
+					</table>
+				</div>
+				<br>
+				<hr>
+				<br>
+			<%}%>
+		
+	<%	}
+	}
+	%>	
 </body>
 </html>

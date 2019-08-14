@@ -99,4 +99,14 @@
     <servlet-name>CitySearch</servlet-name>
     <url-pattern>/CitySearch</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>FlightInstance</display-name>
+    <servlet-name>FlightInstance</servlet-name>
+    <servlet-class>com.Servlets.FlightInstance</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>FlightInstance</servlet-name>
+    <url-pattern>/FlightInstance</url-pattern>
+  </servlet-mapping>
 </web-app>

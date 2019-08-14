@@ -1,12 +1,10 @@
 package com.Servlets;
 
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.IOException; 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 
 import javax.servlet.ServletException;
@@ -15,13 +13,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.apache.catalina.startup.SetAllPropertiesRule;
-
 import com.Connection.DbConnection;
 import com.Flight.FlightDetails;
-import com.PassengerDetails.PassengerDetails;
-
-import oracle.net.aso.a;
 
 public class FlightSearch extends HttpServlet {
 
@@ -36,7 +29,8 @@ public class FlightSearch extends HttpServlet {
 		response.setContentType("text/html");
 		String source = request.getParameter("source");
 		String destination = request.getParameter("destination");
-		PrintWriter pw = response.getWriter();
+		HttpSession session = request.getSession();
+		System.out.println((String)session.getAttribute("name"));
 		ArrayList<Object> list = new ArrayList<Object>();
 		con = DbConnection.getConnection();
 		try {
@@ -45,8 +39,6 @@ public class FlightSearch extends HttpServlet {
 			pst.setString(2,destination);
 			ResultSet rs = pst.executeQuery();
 			while(rs.next()) {
-				System.out.println(rs.getString(1));
-				System.out.println("hello");
 				String flight_num = rs.getString(1);
 				String airline = rs.getString("airline");
 				String weekdays = rs.getString("weekdays");
@@ -58,9 +50,7 @@ public class FlightSearch extends HttpServlet {
 				FlightDetails obj = new FlightDetails(flight_num, airline, weekdays, departure_airport_code, scheduled_departure_time, arrival_airport_code, scheduled_arrival_time, flight_duration);
 				list.add(obj);
 			}
-			HttpSession session = request.getSession();
-			session.setAttribute("data",list);
-			response.sendRedirect("./jsp/SeachResult.jsp");
+			response.sendRedirect("./jsp/Dashboard.jsp?flag=true&source="+list);
 		} 
 		catch (SQLException e) {
 				e.printStackTrace();
