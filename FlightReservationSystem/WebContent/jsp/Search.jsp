@@ -12,6 +12,19 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <script src="../js/script.js"></script>
+<script>
+	function showDay(){
+		var day = new Date();
+		var day_name = new Array(7);
+		day_name[0]='Sunday'
+		day_name[1]=' Monday'
+		day_name[2]='Tuesday'
+		day_name[3]='Wednesday'
+		day_name[4]='Thursday'
+		day_name[5]='Friday'
+		day_name[6]='Saturday'
+	}
+</script>
 <style>
 table, th, td {
   border: 1px solid gray;
@@ -38,7 +51,7 @@ table, th, td {
 					</div>
 					<div class="form-group">
 						<label for="exampleInputPassword1">Date Of Journey</label>
-						<input type="date" class="form-control" id="exampleInputPassword1" placeholder="date" name="date">
+						<input type="date" class="form-control" id="exampleInputPassword1" name="date" placeholder="date" name="date">
 					</div>					
 					<button type="submit" class="btn btn-primary" name="data" value="searchData"><!--onclick="myFunction()"-->Submit</button>
 				</form>		

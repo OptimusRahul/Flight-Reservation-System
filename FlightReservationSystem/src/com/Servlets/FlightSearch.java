@@ -1,11 +1,13 @@
 package com.Servlets;
 
-import java.io.IOException; 
+import java.io.IOException;  
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -15,6 +17,7 @@ import javax.servlet.http.HttpSession;
 
 import com.Connection.DbConnection;
 import com.Flight.FlightDetails;
+import com.Flight.FlightSchedule;
 
 public class FlightSearch extends HttpServlet {
 
@@ -29,6 +32,13 @@ public class FlightSearch extends HttpServlet {
 		response.setContentType("text/html");
 		String source = request.getParameter("source");
 		String destination = request.getParameter("destination");
+		String datee = request.getParameter("date");
+		Date date = new Date(datee);
+		System.out.println(date);
+		Calendar c = Calendar.getInstance();
+		c.setTime(date);
+		int dayOfWeek = c.get(Calendar.DAY_OF_WEEK);
+		System.out.println(dayOfWeek);
 		HttpSession session = request.getSession();
 		System.out.println((String)session.getAttribute("name"));
 		ArrayList<Object> list = new ArrayList<Object>();
@@ -42,6 +52,8 @@ public class FlightSearch extends HttpServlet {
 				String flight_num = rs.getString(1);
 				String airline = rs.getString("airline");
 				String weekdays = rs.getString("weekdays");
+				int getSchedule[] = FlightSchedule.getSchedule(weekdays);
+				
 				String departure_airport_code = rs.getString("departure_airport_code");
 				String scheduled_departure_time = String.valueOf(rs.getInt("scheduled_departure_time"));
 				String arrival_airport_code = rs.getString("arrival_airport_code");
