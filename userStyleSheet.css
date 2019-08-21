@@ -1,0 +1,54 @@
+body{
+	background-color: indigo;	
+	width:100%
+	height:100%;
+	top:0;
+	left:0;
+	z-index=-1;	
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: auto;
+
+        
+}
+
+.card-box {
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  width:100%;
+  height:100%;
+  border-radius: 5px;
+  margin-top: 100px;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: transparent;
+  background-clip: border-box;
+  /*border: 1px solid rgba(0,0,0,.125);*/
+  border-radius: .25rem;
+}
+
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+img {
+  border-radius: 5px 5px 0 0;
+  border-radius:50%;
+  width:100px;
+
+}
+.img-pos{
+   display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 150px;
+}
+
+.container {
+  padding: 2px 16px;
+}	
+
