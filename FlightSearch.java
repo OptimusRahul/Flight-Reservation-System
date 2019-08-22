@@ -1,6 +1,6 @@
 package com.Servlets;
 
-import java.io.IOException;    
+import java.io.IOException;     
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -69,7 +69,6 @@ public class FlightSearch extends HttpServlet {
 					list.add(obj);					
 				}
 			}
-			System.out.println(searchDate);
 			request.setAttribute("AvailableFlights", list);
 			session.setAttribute("passengers", nooftravellers);
 			session.setAttribute("flight_date", searchDate);

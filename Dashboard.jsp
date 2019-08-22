@@ -9,6 +9,7 @@
 <body>
 	<%
 		String name = (String)session.getAttribute("Name");
+		session.setAttribute("Name", name);
 	%>
 	<jsp:include page="../jsp/Navbar.jsp"/>		
 	

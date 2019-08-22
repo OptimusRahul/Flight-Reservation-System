@@ -18,7 +18,7 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <script src="../js/script.js"></script>
 <script>
-function preventDupes( select, index ) {
+/*function preventDupes( select, index ) {
     var options = select.options,
         len = options.length;
     while( len-- ) {
@@ -42,7 +42,7 @@ select1.onchange = function() {
 select2.onchange = function() {
     preventDupes.call(this, select1, this.selectedIndex );
     preventDupes.call(this, select3, this.selectedIndex );
-};
+};*/
 </script>
 <style>
 table, th, td{
@@ -64,7 +64,7 @@ table, th, td{
 				ResultSet source_rs = source_pst.executeQuery();
 	%>
 		
-	<div class="card card-pos child_div" style="width: 18rem;">
+	<div class="card card-pos child-div" style="width: 18rem;">
 		<div id="login" class="tabcontent">
 			<div class="card-header text-center display-10" style="margin-left:auto; margin-right:auto;" id="login">
 				Search
