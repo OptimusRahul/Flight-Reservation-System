@@ -41,7 +41,7 @@ public class LoginAction extends HttpServlet {
 				HttpSession session = request.getSession();
 				session.setAttribute("Name", usr);
 				session.setAttribute("id", id);
-				response.sendRedirect("./jsp/Dashboard.jsp");
+				response.sendRedirect("./jsp/Dashboard.jsp?source"+usr);
 			}else {
 				pw.println("Wrong Credentials");
 			}
