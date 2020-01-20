@@ -14,13 +14,52 @@
 </head>
 <body>
 	<jsp:include page="../jsp/Navbar.jsp"/>
-	<div class="card-box child_div" style="width: 18rem;">
-		<img src="../img/img_avatar.PNG" class="card-img-top" alt="...">
-		<div class="card-body">
-			<h5 class="card-title">Card title</h5>
-			<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-			<a href="#" class="btn btn-primary">View Details</a>
+	<%
+		int travellers = Integer.parseInt((String)session.getAttribute("passengers"));
+	%>
+	<div class="card w-50" style="margin-top:100px; margin-left:auto; margin-right:auto; width: 18rem;">
+			<h5 class="card-header">Passenger Details</h5>
+			<form action="../BookTicket" method="post">
+				<br>
+				<%for(int i=1; i<=travellers; i++){ %>
+					<br>
+					<h4 class="card-title" style="margin-left:10px;">Passenger <%out.print(i);%>. Details</h4>
+					<br>
+					<div class="row" style="margin-left:auto; margin-right:auto;">
+					<div class="col">
+						<h5 class="card-title">First Name</h5>
+						<input type="text" class="form-control" name="firstName<%=i%>" placeholder="First Name">
+					</div>
+					<div class="col">
+						<h5 class="card-title">Middle Name</h5>
+						<input type="text" class="form-control" name="middleName<%=i%>" placeholder="Middle Name">
+					</div>
+					<div class="col">
+						<h5 class="card-title">Last Name</h5>
+						<input type="text" class="form-control" name="lastName<%=i%>" placeholder="Last Name">
+					</div>
+				</div>
+				<%}%>
+				<hr>
+				<div class="row" style="margin-left:auto; margin-right:auto;">
+					<div class="col">
+						<h5 class="card-title">Mobile Number</h5>
+						<input type="tel"class="form-control" placeholder="Enter Mobile Number" name="mobno" style="width:15em;">
+					</div>
+					<div class="col">
+						<h5 class="card-title">Email</h5>
+						<input type="email"class="form-control" placeholder="Enter email" name="email" min="1" max="100" style="width:15em;">
+					</div>
+				</div>
+				<hr>
+				
+				<div style="margin-left:250px; margin-right:auto;">
+					<button type="submit" class="btn btn-primary">Submit</button>&nbsp
+					<button type="Reset" class="btn btn-danger">Reset</button>
+				</div>
+			</form>
+			<br>
 		</div>
-	</div>
+
 </body>
 </html>

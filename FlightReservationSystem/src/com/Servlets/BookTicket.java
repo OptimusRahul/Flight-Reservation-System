@@ -71,21 +71,21 @@ public class BookTicket extends HttpServlet {
     	System.out.println(Email);
     	try {
     		
-    		PreparedStatement totalseats = con.prepareStatement("Select totalnoofseats from airplane where airplane_id=?");
+    		PreparedStatement totalseats = con.prepareStatement("Select totalseats from airplane where airplane_id=?");
     		totalseats.setInt(1,airplane_id);
     		ResultSet total_rs = totalseats.executeQuery();
     		if(total_rs.next()) {
-    			curr_airplane_total_seats = total_rs.getInt("totalnoofseats");
+    			curr_airplane_total_seats = total_rs.getInt("totalseats");
     			System.out.println(curr_airplane_total_seats);
     		}
     		
-    		PreparedStatement reservedSeats = con.prepareStatement("Select seat_num from seat_reservation where flight_num=? and flight_date=? and status=?");
+    		PreparedStatement reservedSeats = con.prepareStatement("Select seat_number from seat_reservation where flight_num=? and flight_date=? and status=?");
     		reservedSeats.setString(1, flight_num);
     		reservedSeats.setString(2, flight_date);
     		reservedSeats.setString(3, "BOOKED");
     		ResultSet reservedSeats_rs = reservedSeats.executeQuery();
     		while(reservedSeats_rs.next()) {
-    			curr_airplane_reserved_seats += reservedSeats_rs.getString("seat_num")+" ";
+    			curr_airplane_reserved_seats += reservedSeats_rs.getString("seat_number")+" ";
     		}
     		if(curr_airplane_reserved_seats.equals(""))
     			curr_airplane_reserved_seats="0";
@@ -100,7 +100,7 @@ public class BookTicket extends HttpServlet {
     		passengerName = Name.trim().split(" ");
     		String bookID = BookingID.getBookingID(flight_num,flight_date);
     		for(int i=0; i<travellers; i++) {
-    			tsn+=getSeatNumber[i]+",";
+    			tsn+=getSeatNumber[i]+" ";
     			bookID+=getSeatNumber[i];
     			try {
     				PreparedStatement bookseats = con.prepareStatement("insert into seat_reservation values(?,?,?,?,?,?,?,?)");
@@ -109,7 +109,7 @@ public class BookTicket extends HttpServlet {
     				bookseats.setString(3, flight_date);
     				bookseats.setString(4, String.valueOf(getSeatNumber[i]));
     				String temp_Passenger = passengerName[i].replace("-", " ").trim();
-    				tp += temp_Passenger+",";
+    				tp += temp_Passenger+" ";
     				bookseats.setString(5, temp_Passenger);
     				bookseats.setString(6, mobNo);
     				bookseats.setString(7, username);
@@ -122,7 +122,6 @@ public class BookTicket extends HttpServlet {
     				e.printStackTrace();
     			}
     		}
-    		System.out.println("tsn: "+tsn);
     		
     		PreparedStatement pst = con.prepareStatement("select departure_airport_code, arrival_airport_code, scheduled_departure_time from flight where flight_num=?");
     		pst.setString(1, flight_num);
@@ -162,7 +161,7 @@ public class BookTicket extends HttpServlet {
     		pw.print("Failed");
     	}    
     	response.sendRedirect("./jsp/TicketGeneration.jsp?source="+namea+"&destination="+nameb+"&passenger="+tp+
-				"&date="+flight_date+"&time="+time+"&flight_num="+flight_num+"&seatNum="+tsn);
-    }
+				"&date="+flight_date+"&time="+time+"&flight_num="+flight_num+"&seatNum"+tsn);
 }
+	}
 

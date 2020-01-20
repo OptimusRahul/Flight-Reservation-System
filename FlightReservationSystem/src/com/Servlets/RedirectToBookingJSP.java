@@ -19,6 +19,7 @@ public class RedirectToBookingJSP extends HttpServlet {
 		int index = Integer.parseInt(request.getParameter("book-btn"));
 		System.out.println(index);
 		HttpSession session = request.getSession();
+
 		String id = session.getAttribute("flight_id").toString();
 		String arr[] = id.trim().split(" ");
 		String airplane_id="";

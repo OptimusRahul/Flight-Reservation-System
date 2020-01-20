@@ -9,6 +9,7 @@
 <body>
 	<%
 		String name = (String)session.getAttribute("Name");
+		session.setAttribute("Name", name);
 	%>
 	<jsp:include page="../jsp/Navbar.jsp"/>		
 	
@@ -27,7 +28,7 @@
 	
 	<div class="card list-pos child_div" style="width: 18rem;">
 		<ul class="list-group list-group-flush">
-			<li class="list-group-item">Book Tickets</li>
+			<li class="list-group-item"><a href="">Book Tickets</a></li>
 			<li class="list-group-item">View Ticket History</li>
 			<li class="list-group-item">Cancel Ticket</li>
 		</ul>

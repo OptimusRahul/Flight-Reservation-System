@@ -33,7 +33,7 @@ public class CancelTicket extends HttpServlet {
 		//System.out.println(al.get(i-1));
 		//System.out.println("s: "+session.getAttribute("list").toString().replace("[", "").replace("]", "").trim().split(","));
 		String ss = session.getAttribute("list").toString().replace("[", "").replace("]", "").trim();
-		System.out.println("ss"+ss);
+		//System.out.println("ss"+ss);
 		String details[] = ss.trim().split(",");
 		String data[] = details[i].trim().split(" ");
 		//System.out.println(data[0].trim().split(" "));
@@ -52,7 +52,7 @@ public class CancelTicket extends HttpServlet {
 	    	try {
 	    		System.out.println("hi");
 	    		PreparedStatement pst = con.prepareStatement("update seat_reservation set status='CANCEL' where booking_id=? and flight_num=? and "
-	    													+"flight_date=? and seat_num=? and cust_name=? and cust_phone=? and uname=? and status=?");
+	    													+"flight_date=? and seat_number=? and customer_name=? and customer_phone=? and uname=? and status=?");
 	    		pst.setString(1, bk);
 	    		pst.setString(2, fn);
 	    		pst.setString(3, fd);
@@ -64,13 +64,11 @@ public class CancelTicket extends HttpServlet {
 	    		ResultSet rs = pst.executeQuery();
 	    		if(rs.next()) {
 	    			response.sendRedirect("./jsp/ViewHistory.jsp");
-	    		} 
-	    		else {
-	    			response.sendRedirect("./jsp/ViewHistory.jsp");
-	    		}
+	    		}    		
 	    	}catch(SQLException e) {
 	    		e.printStackTrace();
 	    	}
 		}
+		response.sendRedirect("./jsp/ViewHistory.jsp");
 	}
 }
